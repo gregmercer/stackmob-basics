@@ -170,6 +170,7 @@ var theApp = (function($){
     el: 'body',
 
     initialize: function() {
+      console.log('initialize UpdateView');
       this.template = _.template($('#update-view').html());
       this.collection = this.options.collection;
       this.router = this.options.router;
@@ -208,6 +209,7 @@ var theApp = (function($){
     delete: function(e) {
       
       e.preventDefault();  
+      this.stopListening();
 
       var collection = this.collection;
       var router = this.router;
@@ -217,10 +219,6 @@ var theApp = (function($){
 
       var item_id = $('#item_id').val();
       console.log('delete item_id = ' + item_id);
-
-      if (!item_id) {
-        return;
-      }
 
       var model = this.collection.get(item_id);
 
@@ -237,6 +235,7 @@ var theApp = (function($){
     update: function(e) {
 
       e.preventDefault();  
+      this.stopListening();      
 
       var collection = this.collection;
       var router = this.router;
@@ -303,6 +302,7 @@ var theApp = (function($){
   var ListItemView = Backbone.View.extend({
 
     tagName: 'ul',
+    className: 'nav nav-list',
 
     initialize: function() {
       this.collection.bind('all', this.render, this);
@@ -310,9 +310,9 @@ var theApp = (function($){
       this.router = this.options.router;      
     },
 
-    events: {
-      "click .updateItem": "updateItem",  
-    },        
+    //events: {
+      //"click .updateItem": "updateItem",  
+    //},        
 
     render: function() {
 
@@ -329,6 +329,7 @@ var theApp = (function($){
       return this;
     },
 
+    /*
     updateItem: function(ev) {
       
       console.log('in updateItem');
@@ -346,6 +347,7 @@ var theApp = (function($){
       }); 
 
     },
+    */
 
   });          
 
@@ -388,7 +390,14 @@ var theApp = (function($){
 
     update:function(item_id) {
       console.log('update item_id = ' + item_id);
-      new UpdateView({collection:this.collection, router: this, item_id:item_id});    
+      if (this.updateView) {
+        console.log('using existing updateView');
+        this.updateView.item_id = item_id;
+        this.updateView.render();
+      } else {
+        console.log('creating new updateView');
+        this.updateView = new UpdateView({collection:this.collection, router: this, item_id:item_id});    
+      }       
     },    
 
   });
