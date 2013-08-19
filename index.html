@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Basic StackMob</title>
+
+    <link rel="stylesheet" href="http://getbootstrap.com/2.3.2/assets/css/bootstrap.css" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script src="http://static.stackmob.com/js/json2-min.js"></script>
+    <script src="http://static.stackmob.com/js/underscore-1.4.4-min.js"></script>
+    <script src="http://static.stackmob.com/js/stackmob-js-0.9.2-bundled-min.js"></script>
+
+    <!-- App specific scripts -->
+    <script src="app.js"></script>
+
+    <script type="text/template" id="home-view">
+      <div class="navbar">
+        <div class="navbar-inner">
+          <a class="brand" href="#">Test App</a>
+          <ul class="nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#add">Add</a></li>
+          </ul>
+        </div>
+      </div>    
+      <div class="container">
+        hello - <%= text %> view
+      </div>
+    </script>
+
+    <script type="text/template" id="homefooter-view">
+      <div class="control-group">
+        <div class="controls">
+           <a href="#" id="clearAllBtn" class="btn">clear all</a>
+        </div>
+      </div> 
+    </script>    
+
+    <script type="text/template" id="add-view">
+      <div class="navbar">
+        <div class="navbar-inner">
+          <a class="brand" href="#">Test App</a>
+          <ul class="nav">
+            <li><a href="#">Home</a></li>
+            <li class="active"><a href="#add">Add</a></li>
+          </ul>
+        </div>
+      </div>      
+      <div class="container">
+        Hello - <%= text %> view
+        <form class="form-horizontal" method="post">
+            <fieldset>
+              <legend>Wine Detail</legend>
+              <div class="control-group">
+                <label class="control-label" for="input01">Name:</label>
+                <div class="controls">
+                  <input type="text" class="input-xlarge addName" id="name" name="name" value="<%= name %>">
+                </div>
+              </div>
+              <div class="control-group">
+                <div class="controls">
+                   <a href="#" id="cancelBtn" class="btn">cancel</a>
+                   <a href="#" id="saveBtn" class="btn">save</a>
+                </div>
+              </div> 
+            </fieldset>
+          </form>          
+      </div>   
+    </script>
+
+    <script type="text/template" id="update-view">
+      <div class="navbar">
+        <div class="navbar-inner">
+          <a class="brand" href="#">Test App</a>
+          <ul class="nav">
+            <li><a href="#">Home</a></li>
+            <li><a href="#add">Add</a></li>
+          </ul>
+        </div>
+      </div>      
+      <div class="container">
+        Hello - <%= text %> view
+        <form class="form-horizontal" method="post">
+            <fieldset>
+              <legend>Update Wine Detail</legend>
+              <div class="control-group">
+                <label class="control-label" for="input01">Name:</label>
+                <div class="controls">
+                  <input type="text" class="input-xlarge updateName" id="name" name="name" value="<%= name %>">
+                  <input type="hidden" class="input-xlarge" id="item_id" name="item_id" value="<%= item_id %>">
+                </div>
+              </div>
+              <div class="control-group">
+                <div class="controls">
+                   <a href="#" id="cancelBtn" class="btn">cancel</a>
+                   <a href="#" id="deleteBtn" class="btn">delete</a>
+                   <a href="#" id="updateBtn" class="btn">update</a>
+                </div>
+              </div> 
+            </fieldset>
+          </form>          
+      </div>   
+    </script>    
+
+    <script type="text/template" id="list-view">
+    </script>
+
+    <script type="text/template" id="listitem-view">
+      <li class="updateItem" itemid="<%= wines_id %>"><%= name %></li>
+    </script>        
+
+  </head>
+  <body></body>
+</html>
